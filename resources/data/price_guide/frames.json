@@ -1,0 +1,44 @@
+{
+  "Brightness Circle": {
+    "base": "10-15"
+  },
+  "Chu Chu Fever": {
+    "base": "1"
+  },
+  "Dress Plate": {
+    "base": "15-20"
+  },
+  "Electro Frame": {
+    "base": "2-3"
+  },
+  "Love Heart": {
+    "base": "30-50"
+  },
+  "Stealth Suit": {
+    "base": "10-12"
+  },
+  "Wedding Dress": {
+    "base": "2"
+  },
+  "Blue Odoshi Violet Nimaidou": {
+    "base": "1"
+  },
+  "Samurai Armor": {
+    "base": "1"
+  },
+  "Thirteen": {
+    "base": "2-3"
+  },
+  "Ignition Cloak": {
+    "base": "15-20"
+  },
+  "Mother Garb": {
+    "base": "3"
+  },
+  "Mother Garb+": {
+    "base": "10-15"
+  },
+  "Select Cloak": {
+    "base": "10"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "Bunny Ears": {
+    "base": "3"
+  },
+  "Cat Ears": {
+    "base": "3"
+  },
+  "DF Shield": {
+    "base": "20-30"
+  },
+  "Epsiguard": {
+    "base": "2"
+  },
+  "Gods Shield \"Byakko\"": {
+    "base": "2-3"
+  },
+  "Gods Shield \"Genbu\"": {
+    "base": "1"
+  },
+  "Gods Shield \"Suzaku\"": {
+    "base": "2-3"
+  },
+  "Gods Shield \"Seiryuu\"": {
+    "base": "1"
+  },
+  "Gods Shield \"Kouryu\"": {
+    "base": "6-8"
+  },
+  "Honeycomb Reflector": {
+    "base": "15-20"
+  },
+  "Rupika": {
+    "base": "10"
+  },
+  "Safety Heart": {
+    "base": "35-50"
+  },
+  "Secure Feet": {
+    "base": "2"
+  },
+  "Shield of Delsaber": {
+    "base": "2"
+  },
+  "Standstill Shield": {
+    "base": "2"
+  },
+  "Stink Shield": {
+    "base": "1"
+  }
+}
