@@ -1,4 +1,7 @@
-from typing import List, Dict
+from typing import List, Dict, Union
+
+from model import common_util
+from model.common_util import Config
 
 class Item:
     pass
@@ -27,7 +30,14 @@ def weapon(self, item_code: int, item_data: List[int]) -> Dict:
     if not tekked_mode and is_common:
         tekked_text = "???? "
         
-    price = self.get_price_weapon(name, item_data, grinder, element)
+    weapon_attributes = {
+        "N": native,
+        "AB": a_beast,
+        "M": machine,
+        "D": dark,
+    }
+
+    price = self.get_price_weapon(name, weapon_attributes, hit, grinder, element)
 
     return {
         "name": name,
@@ -150,7 +160,7 @@ def tool(self, item_code: int, item_data: List[int]) -> Dict:
     name = self.get_item_name(item_code)
     
     # Set number based on data length (28 for inventory, otherwise storage)
-    number = itemData[5] if len(item_data) == 28 else item_data[20]
+    number = item_data[5] if len(item_data) == 28 else item_data[20]
     
     price = self.get_price_tool(name, item_data, number)
 
