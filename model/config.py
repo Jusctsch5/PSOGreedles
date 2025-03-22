@@ -57,10 +57,7 @@ class Config:
         NORMAL = 0
         CLASSIC = 1
 
-    MODE_NAME = {
-        0: "NORMAL",
-        1: "CLASSIC"
-    }
+    MODE_NAME = {0: "NORMAL", 1: "CLASSIC"}
 
     TITLES = {
         1: "Ra-GOU",
@@ -89,18 +86,64 @@ class Config:
     }
 
     COMMON_WEAPON_CODES = [
-        0x000000, 0x000100, 0x000101, 0x000102, 0x000103, 0x000104,
-        0x000200, 0x000201, 0x000202, 0x000203, 0x000204,
-        0x000300, 0x000301, 0x000302, 0x000303, 0x000304,
-        0x000400, 0x000401, 0x000402, 0x000403, 0x000404,
-        0x000500, 0x000501, 0x000502, 0x000503, 0x000504,
-        0x000600, 0x000601, 0x000602, 0x000603, 0x000604,
-        0x000700, 0x000701, 0x000702, 0x000703, 0x000704,
-        0x000800, 0x000801, 0x000802, 0x000803, 0x000804,
-        0x000900, 0x000901, 0x000902, 0x000903, 0x000904,
-        0x000A00, 0x000A01, 0x000A02, 0x000A03,
-        0x000B00, 0x000B01, 0x000B02, 0x000B03,
-        0x000C00, 0x000C01, 0x000C02, 0x000C03,
+        0x000000,
+        0x000100,
+        0x000101,
+        0x000102,
+        0x000103,
+        0x000104,
+        0x000200,
+        0x000201,
+        0x000202,
+        0x000203,
+        0x000204,
+        0x000300,
+        0x000301,
+        0x000302,
+        0x000303,
+        0x000304,
+        0x000400,
+        0x000401,
+        0x000402,
+        0x000403,
+        0x000404,
+        0x000500,
+        0x000501,
+        0x000502,
+        0x000503,
+        0x000504,
+        0x000600,
+        0x000601,
+        0x000602,
+        0x000603,
+        0x000604,
+        0x000700,
+        0x000701,
+        0x000702,
+        0x000703,
+        0x000704,
+        0x000800,
+        0x000801,
+        0x000802,
+        0x000803,
+        0x000804,
+        0x000900,
+        0x000901,
+        0x000902,
+        0x000903,
+        0x000904,
+        0x000A00,
+        0x000A01,
+        0x000A02,
+        0x000A03,
+        0x000B00,
+        0x000B01,
+        0x000B02,
+        0x000B03,
+        0x000C00,
+        0x000C01,
+        0x000C02,
+        0x000C03,
     ]
 
     class AttributeType:
@@ -140,7 +183,7 @@ class Config:
         0x1A: "Bronze",
         0x1B: "Plum",
         0x1C: "Violet",
-        0x1D: "Goldenrod"
+        0x1D: "Goldenrod",
     }
 
     SRANK_WEAPON_CODES = {
@@ -173,7 +216,7 @@ class Config:
         0x00A600: "LAUNCHER",
         0x00A700: "CARDS",
         0x00A800: "KNUCKLE",
-        0x00A900: "AXE"
+        0x00A900: "AXE",
     }
 
     @classmethod
@@ -188,7 +231,7 @@ class Config:
                 disk_name_codes_ja as DISK_NAME_CODES,
                 disk_name_language_ja as DISK_NAME_LANGUAGE,
                 pbs_ja as PBS,
-                mag_color_codes_ja as MAG_COLOR_CODES
+                mag_color_codes_ja as MAG_COLOR_CODES,
             )
         else:
             from .item_codes import (
@@ -200,7 +243,7 @@ class Config:
                 disk_name_codes as DISK_NAME_CODES,
                 disk_name_language as DISK_NAME_LANGUAGE,
                 pbs as PBS,
-                mag_color_codes as MAG_COLOR_CODES
+                mag_color_codes as MAG_COLOR_CODES,
             )
 
         # Assign imported values to class variables

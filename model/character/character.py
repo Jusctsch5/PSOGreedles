@@ -3,10 +3,11 @@ from .abstract import Abstract
 from ..config import Config
 from ..common_util import CommonUtil
 
+
 class Character(Abstract):
     def __init__(self, character_data: bytes, slot: int):
         super().__init__(character_data, slot)
-        
+
         # Character slot number
         self.slot: int = 0
         # Character mode
@@ -43,13 +44,17 @@ class Character(Abstract):
         self.set_experience(character_data)
         self.set_ep1_progress(character_data, 11460, 9)
         self.set_ep2_progress(character_data, 11496, 6)
-        
+
         # Set inventory and bank items
         self.set_inventory(character_data[20:860], self.inventory, 28, slot, "EN")
-        self.set_inventory(character_data[1800:6600], self.bank, 24, f"{slot} Bank", "EN")
+        self.set_inventory(
+            character_data[1800:6600], self.bank, 24, f"{slot} Bank", "EN"
+        )
         self.set_inventory(character_data[20:860], self.inventory, 28, slot, "JA")
-        self.set_inventory(character_data[1800:6600], self.bank, 24, f"{slot} Bank", "JA")
-        
+        self.set_inventory(
+            character_data[1800:6600], self.bank, 24, f"{slot} Bank", "JA"
+        )
+
         # Set meseta values
         self.set_meseta(character_data[884:887], self.inventory, slot, "EN")
         self.set_meseta(character_data[1795:1799], self.bank, f"{slot} Bank", "EN")
@@ -58,7 +63,9 @@ class Character(Abstract):
 
     def set_mode(self, character_data: bytes) -> None:
         """Set character mode based on data"""
-        self.mode = Config.Mode.CLASSIC if character_data[7] == 0x40 else Config.Mode.NORMAL
+        self.mode = (
+            Config.Mode.CLASSIC if character_data[7] == 0x40 else Config.Mode.NORMAL
+        )
 
     def set_name(self, character_data: bytes) -> None:
         """Set character name from data"""
@@ -109,7 +116,11 @@ class Character(Abstract):
     def set_ep1_progress(self, character_data: bytes, index: int, number: int) -> None:
         """Set Episode 1 progress"""
         count = self.progress_count(character_data, index, number)
-        self.ep1_progress = f"Stage {count} Cleared! | {Config.Titles[count]}" if count > 0 else "No Progress"
+        self.ep1_progress = (
+            f"Stage {count} Cleared! | {Config.Titles[count]}"
+            if count > 0
+            else "No Progress"
+        )
 
     def set_ep2_progress(self, character_data: bytes, index: int, number: int) -> None:
         """Set Episode 2 progress"""
@@ -121,8 +132,8 @@ class Character(Abstract):
         count = 0
         for i in range(max_count):
             # End if 4 bytes sum to 0 (no clear record for this stage)
-            if sum(character_data[index:index + 4]) == 0:
+            if sum(character_data[index : index + 4]) == 0:
                 break
             count += 1
             index += 4
-        return count 
+        return count

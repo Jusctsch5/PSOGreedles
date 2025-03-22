@@ -7,9 +7,10 @@ The price guide is loaded from the price guide directory and the price guide is 
 - Price guide loading
 - Price guide pricing
 
-It should not test the exact pricing values, but rather the functionality of the price guide. 
+It should not test the exact pricing values, but rather the functionality of the price guide.
 This is because the pricing values are dynamic and can change.
 """
+
 import pytest
 from pathlib import Path
 import logging
@@ -21,9 +22,11 @@ PRICE_DATA_DIR = Path("resources/data/price_guide")
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
+
 @pytest.fixture
 def fixed_price_guide():
     return PriceGuideFixed(PRICE_DATA_DIR)
+
 
 def test_price_guide_load(fixed_price_guide: PriceGuideFixed):
     """Test price guide loading"""
@@ -36,8 +39,9 @@ def test_price_guide_load(fixed_price_guide: PriceGuideFixed):
     assert len(fixed_price_guide.mag_prices) > 0
     assert len(fixed_price_guide.disk_prices) > 0
     assert len(fixed_price_guide.tool_prices) > 0
-    
+
     assert fixed_price_guide.srank_weapon_prices is not None
+
 
 def test_weapon_pricing_basic(fixed_price_guide: PriceGuideFixed):
     """Test weapons with simple base prices"""
@@ -48,9 +52,10 @@ def test_weapon_pricing_basic(fixed_price_guide: PriceGuideFixed):
     # Test item with only hit values
     assert fixed_price_guide.get_price_weapon("HANDGUN:GULD", {}, 0, 0, "") != 0
 
+
 def test_weapon_hit_adjustments(fixed_price_guide: PriceGuideFixed):
     """Test weapons with hit value modifications"""
-    
+
     # Validate that the price increases with listed hit value
     last_price = 0
     for hit in fixed_price_guide.weapon_prices["EXCALIBUR"]["hit_values"].keys():
@@ -73,14 +78,15 @@ def test_pricing_strategies(fixed_price_guide: PriceGuideFixed):
     # Test MINIMUM strategy
     fixed_price_guide.bps = BasePriceStrategy.MINIMUM
     assert fixed_price_guide.get_price_weapon("EXCALIBUR", {}, 0, 0, "") == 9
-    
+
     # Test MAXIMUM strategy
     fixed_price_guide.bps = BasePriceStrategy.MAXIMUM
     assert fixed_price_guide.get_price_weapon("EXCALIBUR", {}, 0, 0, "") == 12
-    
+
     # Test AVERAGE strategy
     fixed_price_guide.bps = BasePriceStrategy.AVERAGE
     assert fixed_price_guide.get_price_weapon("EXCALIBUR", {}, 0, 0, "") == 10.5
+
 
 def test_special_weapons(fixed_price_guide: PriceGuideFixed):
     """Test weapons with unique pricing structures"""
@@ -91,10 +97,11 @@ def test_special_weapons(fixed_price_guide: PriceGuideFixed):
     # Test weapon with both base and hit values
     price = fixed_price_guide.get_price_weapon("VJAYA", {}, 35, 0, "")
     assert price == 1  # Base is 0 + hit value 1
-    
+
     # Test weapon with only hit values
     price = fixed_price_guide.get_price_weapon("HEAVEN STRIKER", {}, 45, 0, "")
     assert 2500 <= price <= 3000
+
 
 def test_srank_weapons(fixed_price_guide: PriceGuideFixed):
     """Test S-rank weapons with unique pricing structures"""
@@ -103,7 +110,7 @@ def test_srank_weapons(fixed_price_guide: PriceGuideFixed):
     price = fixed_price_guide.get_price_srank_weapon("ES BLADE", "", 0, "")
     assert price == 35
 
-    # Test weapon with both base and ability price  
+    # Test weapon with both base and ability price
     price = fixed_price_guide.get_price_srank_weapon("ES BLADE", "HP REVIVAL", 0, "")
     assert price == 35 + 30
     price = fixed_price_guide.get_price_srank_weapon("ES BLADE", "BERSERK", 0, "")
@@ -117,12 +124,13 @@ def test_srank_weapons(fixed_price_guide: PriceGuideFixed):
 def test_edge_cases(fixed_price_guide: PriceGuideFixed):
     """Test boundary conditions and special cases"""
     # Test weapon with invalid price formatc
-    price = fixed_price_guide.get_price_weapon("M&A60 VISE", {}, 0, 0,"")
+    price = fixed_price_guide.get_price_weapon("M&A60 VISE", {}, 0, 0, "")
     assert price == 0  # No base price and hit 0 is 0
-    
+
     # Test weapon with N/A values
     price = fixed_price_guide.get_price_weapon("Snow Queen", {}, 0, 0, "")
     assert price == 0  # N/A should be treated as 0
+
 
 def test_grinder_and_element_adjustments(fixed_price_guide: PriceGuideFixed):
     """Test weapons with grinder and element modifications (if implemented)"""
@@ -136,4 +144,3 @@ def test_price_guide_units(fixed_price_guide: PriceGuideFixed):
     """Test units with simple base prices"""
     assert fixed_price_guide.get_price_unit("Adept") == 38
     assert fixed_price_guide.get_price_unit("Centurion/Ability") == 7
-

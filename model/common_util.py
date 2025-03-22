@@ -1,4 +1,3 @@
-
 class CommonUtil:
     @staticmethod
     def binary_array_to_int(arr):
@@ -6,11 +5,11 @@ class CommonUtil:
         for val in arr:
             result = (result << 8) | val
         return result
-    
+
     @staticmethod
     def binary_array_to_hex(arr):
-        return ''.join(f'{x:02X}' for x in arr)
-    
+        return "".join(f"{x:02X}" for x in arr)
+
     @staticmethod
     def string_to_char_codes(string):
         char_codes = ""
@@ -20,10 +19,11 @@ class CommonUtil:
             back = code & 0x00FF
             char_codes += f"{back:02x}{front:02x}"
         return char_codes.upper()
-    
+
     @staticmethod
     def int_to_hex(value):
-        return f"0x{value:06X}" 
+        return f"0x{value:06X}"
+
 
 class Config:
     ITEM_CODES = None
@@ -35,7 +35,7 @@ class Config:
     DISK_NAME_LANGUAGE = None
     PBS = None
     MAG_COLOR_CODES = None
-    
+
     WEAPON_RANGE = (0x000000, 0x00ED00)
     FRAME_RANGE = (0x010100, 0x010158)
     BARRIER_RANGE = (0x010200, 0x0102B4)
@@ -46,6 +46,7 @@ class Config:
     DISK_RANGE = (0x050000, 0x05121D)
     EPHINEA_RANGE = (0x031005, 0x031810)
     DISK_CODE = 0x0302
+
 
 class ItemType:
     WEAPON = 1
@@ -59,9 +60,11 @@ class ItemType:
     OTHER = 9
     MESETA = 10
 
+
 class AdditionType:
     DEF = 0
     AVOID = 1
+
 
 CLASSES = {
     0x00: "HUmar",
@@ -78,15 +81,9 @@ CLASSES = {
     0x0B: "RAmarl",
 }
 
-MODE = {
-    0: "NORMAL",
-    1: "CLASSIC"
-}
+MODE = {0: "NORMAL", 1: "CLASSIC"}
 
-MODE_NAME = {
-    0: "NORMAL",
-    1: "CLASSIC"
-}
+MODE_NAME = {0: "NORMAL", 1: "CLASSIC"}
 
 TITLES = {
     1: "Ra-GOU",
@@ -213,7 +210,7 @@ MAG_COLOR_CODES = {
     0x1A: "Bronze",
     0x1B: "Plum",
     0x1C: "Violet",
-    0x1D: "Goldenrod"
+    0x1D: "Goldenrod",
 }
 
 SRANK_WEAPON_CODES = {
@@ -246,5 +243,5 @@ SRANK_WEAPON_CODES = {
     0x00A600: "LAUNCHER",
     0x00A700: "CARDS",
     0x00A800: "KNUCKLE",
-    0x00A900: "AXE"
+    0x00A900: "AXE",
 }

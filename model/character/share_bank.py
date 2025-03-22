@@ -2,15 +2,16 @@ from typing import Dict, Any
 from .abstract import Abstract
 from ..config import Config
 
+
 class ShareBank(Abstract):
     def __init__(self, character_data: bytes, slot: int):
         super().__init__(character_data, slot)
-        
+
         # Initialize class variables
         self.slot: str = ""
         self.mode: int = 0
         self.bank: Dict[str, Any] = {}
-        
+
         # Set character slot number
         self.set_slot(slot)
         # Set character mode
@@ -30,4 +31,4 @@ class ShareBank(Abstract):
 
     def set_mode(self, slot: int) -> None:
         """Set the mode value"""
-        self.mode = slot 
+        self.mode = slot
