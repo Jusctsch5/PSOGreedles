@@ -54,12 +54,14 @@ class PriceGuideAbstract(ABC):
         price_range_value: str = ""
         if "-" in price_range:
             price_range_value = price_range
-        elif price_range.isdigit():
-            return float(price_range)
         else:
-            raise PriceGuideParseException(
-                f"Price range {price_range} does not contain a base price in form of 'base' or 'base-price'"
-            )
+            try:
+                price_value = float(price_range)
+                return price_value
+            except ValueError:
+                raise PriceGuideParseException(
+                    f"Price range {price_range} does not contain a base price in form of 'base' or 'base-price'"
+                )
 
         # Parse the price range value from the str to float based on the BasePriceStrategy
         min_price, max_price = map(float, price_range_value.split("-"))
@@ -185,38 +187,60 @@ class PriceGuideAbstract(ABC):
         return base_price
 
     def get_price_frame(
-        self, name: str, addition: str, slot: int, item_data: Optional[Dict] = None
+        self,
+        name: str,
+        addition: Dict[str, int],
+        max_addition: Dict[str, int],
+        slot: int,
+        item_data: Optional[Dict] = None,
     ) -> float:
         """Get price for frame"""
-        return 0
+        logger.info(f"get_price_frame: {name} {addition} {max_addition} {slot}")
+        price_range = self.frame_prices[name]["base"]
+        base_price = self.get_price_from_range(price_range, self.bps)
+        if slot > 0:
+            base_price += self.get_price_tool("AddSlot", slot)
+
+        return base_price
 
     def get_price_barrier(
-        self, name: str, addition: str, item_data: Optional[Dict] = None
+        self, name: str, addition: Dict[str, int], max_addition: Dict[str, int]
     ) -> float:
         """Get price for barrier"""
+        logger.info(f"get_price_barrier: {name} {addition} {max_addition}")
+        price_range = self.barrier_prices[name]["base"]
+        base_price = self.get_price_from_range(price_range, self.bps)
+
+        return base_price
+
+    def get_price_unit(self, name: str) -> float:
+        """Get price for unit"""
+        price_range = self.unit_prices[name]["base"]
+        return self.get_price_for_item_range(price_range, 1, self.bps)
+
+    def get_price_mag(self, name: str, level: int) -> float:
+        """Get price for mag"""
+        price_range = self.mag_prices[name]["base"]
+        return self.get_price_for_item_range(price_range, 1, self.bps)
+
+    def get_price_disk(self, name: str, level: int) -> float:
+        levels = self.disk_prices[name]
+        # Convert string keys to integers and sort
+        sorted_thresholds = sorted(map(int, levels.keys()))
+
+        # Find the largest threshold <= actual level value
+        index = bisect(sorted_thresholds, level) - 1
+
+        if index >= 0:
+            threshold = sorted_thresholds[index]
+            price_range = levels[str(threshold)]
+            price = self.get_price_from_range(price_range, self.bps)
+            return price
+
+        # If not found, it's not worth anything.
         return 0
 
-    def get_price_unit(self, name: str, item_data: Optional[Dict] = None) -> float:
-        """Get price for unit"""
-        price_range = self.unit_prices[name]["base_price"]
-        return self.get_price_for_item_range(price_range, 1, self.bps)
-
-    def get_price_mag(
-        self, name: str, level: int, item_data: Optional[Dict] = None
-    ) -> float:
-        """Get price for mag"""
-        price_range = self.mag_prices[name]
-        return self.get_price_for_item_range(price_range, 1, self.bps)
-
-    def get_price_disk(
-        self, name: str, level: int, item_data: Optional[Dict] = None
-    ) -> float:
-        price_range = self.disk_prices[name][str(level)]
-        return self.get_price_for_item_range(price_range, 1, self.bps)
-
-    def get_price_tool(
-        self, name: str, number: int, item_data: Optional[Dict] = None
-    ) -> float:
+    def get_price_tool(self, name: str, number: int) -> float:
         """Get price for tool"""
 
         # Check if the tool exists in the price database
@@ -224,13 +248,12 @@ class PriceGuideAbstract(ABC):
             return 0
 
         # Get the price range string
-        price_range = self.tool_prices[name]
+        price_range = self.tool_prices[name]["base"]
         return self.get_price_for_item_range(price_range, number, self.bps)
 
-    def get_price_other(
-        self, name: str, number: int, item_data: Optional[Dict] = None
-    ) -> float:
+    def get_price_other(self, name: str, number: int) -> float:
         """Get price for other items"""
+        logger.info(f"get_price_other: {name} {number}")
         return 0
 
 

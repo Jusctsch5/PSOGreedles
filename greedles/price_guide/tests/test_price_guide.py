@@ -15,7 +15,7 @@ import pytest
 from pathlib import Path
 import logging
 
-from model.price_guide.price_guide import PriceGuideFixed, BasePriceStrategy
+from greedles.price_guide.price_guide import PriceGuideFixed, BasePriceStrategy
 
 PRICE_DATA_DIR = Path("resources/data/price_guide")
 
@@ -119,6 +119,18 @@ def test_srank_weapons(fixed_price_guide: PriceGuideFixed):
     assert price == 35 + 60
     price = fixed_price_guide.get_price_srank_weapon("ES BLADE", "KING'S", 0, "")
     assert price == 35 + 40
+
+
+def test_frame_pricing(fixed_price_guide: PriceGuideFixed):
+    """Test frames with unique pricing structures"""
+    price = fixed_price_guide.get_price_frame("Brightness Circle", {}, {}, 4, None)
+    assert price == 12
+
+
+def test_price_guide_barriers(fixed_price_guide: PriceGuideFixed):
+    """Test barriers with simple base prices"""
+    assert fixed_price_guide.get_price_barrier("Adept") == 38
+    assert fixed_price_guide.get_price_barrier("Centurion/Ability") == 7
 
 
 def test_edge_cases(fixed_price_guide: PriceGuideFixed):

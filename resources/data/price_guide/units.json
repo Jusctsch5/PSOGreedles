@@ -1,59 +1,155 @@
 {
-  "Adept": { "base_price": "38-40" },
-  "Centurion/Ability": { "base_price": "7-8" },
-  "Cure/Confuse": { "base_price": "0.5-1" },
-  "Cure/Freeze": { "base_price": "1" },
-  "Cure/Paralysis": { "base_price": "0.5-1" },
-  "Cure/Poison": { "base_price": "0" },
-  "Cure/Shock": { "base_price": "1" },
-  "Cure/Slow": { "base_price": "0.5-1" },
-  "Cure set": { "base_price": "3" },
-  "Divine Protection": { "base_price": "0" },
-  "Devil/Technique": { "base_price": "0.5" },
-  "Friend Ring": { "base_price": "0" },
-  "God/Ability": { "base_price": "0.25" },
-  "God/Arm": { "base_price": "1" },
-  "God/Battle": { "base_price": "0.5" },
-  "God/Body": { "base_price": "0" },
-  "God/HP": { "base_price": "0.5" },
-  "God/Legs": { "base_price": "0" },
-  "God/Luck": { "base_price": "0" },
-  "God/Mind": { "base_price": "0.5" },
-  "God/Power": { "base_price": "0.5" },
-  "God/Technique": { "base_price": "3-5" },
-  "God/TP": { "base_price": "0" },
-  "Heavenly/Ability": { "base_price": "1-2" },
-  "Heavenly/Arms": { "base_price": "2-3" },
-  "Heavenly/Battle": { "base_price": "1-2" },
-  "Heavenly/Body": { "base_price": "0" },
-  "Heavenly/HP": { "base_price": "1" },
-  "Heavenly/Legs": { "base_price": "0" },
-  "Heavenly/Luck": { "base_price": "0.5" },
-  "Heavenly/Mind": { "base_price": "1" },
-  "Heavenly/Power": { "base_price": "1" },
-  "Heavenly/Resist": { "base_price": "2" },
-  "Heavenly/Technique": { "base_price": "1" },
-  "Heavenly/TP": { "base_price": "0.5" },
-  "HP/Resurrection": { "base_price": "1" },
-  "HP/Revival": { "base_price": "0.5" },
-  "Limiter": { "base_price": "30-33" },
-  "PB/Create": { "base_price": "1" },
-  "PB/Increase": { "base_price": "5-8" },
-  "Perfect/Resist": { "base_price": "0.5" },
-  "Proof of Sword-Saint": { "base_price": "20" },
-  "TP/Resurrection": { "base_price": "1" },
-  "TP/Revival": { "base_price": "0.5" },
-  "Smartlink": { "base_price": "1-2" },
-  "Swordsman Lore": { "base_price": "10-13" },
-  "V101": { "base_price": "19-20" },
-  "V501": { "base_price": "2-3" },
-  "V502": { "base_price": "28-30" },
-  "V801": { "base_price": "7-8" },
-  "Yasakani Magatama": { "base_price": "0.5" }
+  "Adept": {
+    "base": "38-40"
+  },
+  "Centurion/Ability": {
+    "base": "7-8"
+  },
+  "Cure/Confuse": {
+    "base": "0.5-1"
+  },
+  "Cure/Freeze": {
+    "base": "1"
+  },
+  "Cure/Paralysis": {
+    "base": "0.5-1"
+  },
+  "Cure/Poison": {
+    "base": "0"
+  },
+  "Cure/Shock": {
+    "base": "1"
+  },
+  "Cure/Slow": {
+    "base": "0.5-1"
+  },
+  "Cure set": {
+    "base": "3"
+  },
+  "Divine Protection": {
+    "base": "0"
+  },
+  "Devil/Technique": {
+    "base": "0.5"
+  },
+  "Friend Ring": {
+    "base": "0"
+  },
+  "God/Ability": {
+    "base": "0.25"
+  },
+  "God/Arm": {
+    "base": "1"
+  },
+  "God/Battle": {
+    "base": "0.5"
+  },
+  "God/Body": {
+    "base": "0"
+  },
+  "God/HP": {
+    "base": "0.5"
+  },
+  "God/Legs": {
+    "base": "0"
+  },
+  "God/Luck": {
+    "base": "0"
+  },
+  "God/Mind": {
+    "base": "0.5"
+  },
+  "God/Power": {
+    "base": "0.5"
+  },
+  "God/Technique": {
+    "base": "3-5"
+  },
+  "God/TP": {
+    "base": "0"
+  },
+  "Heavenly/Ability": {
+    "base": "1-2"
+  },
+  "Heavenly/Arms": {
+    "base": "2-3"
+  },
+  "Heavenly/Battle": {
+    "base": "1-2"
+  },
+  "Heavenly/Body": {
+    "base": "0"
+  },
+  "Heavenly/HP": {
+    "base": "1"
+  },
+  "Heavenly/Legs": {
+    "base": "0"
+  },
+  "Heavenly/Luck": {
+    "base": "0.5"
+  },
+  "Heavenly/Mind": {
+    "base": "1"
+  },
+  "Heavenly/Power": {
+    "base": "1"
+  },
+  "Heavenly/Resist": {
+    "base": "2"
+  },
+  "Heavenly/Technique": {
+    "base": "1"
+  },
+  "Heavenly/TP": {
+    "base": "0.5"
+  },
+  "HP/Resurrection": {
+    "base": "1"
+  },
+  "HP/Revival": {
+    "base": "0.5"
+  },
+  "Limiter": {
+    "base": "30-33"
+  },
+  "PB/Create": {
+    "base": "1"
+  },
+  "PB/Increase": {
+    "base": "5-8"
+  },
+  "Perfect/Resist": {
+    "base": "0.5"
+  },
+  "Proof of Sword-Saint": {
+    "base": "20"
+  },
+  "TP/Resurrection": {
+    "base": "1"
+  },
+  "TP/Revival": {
+    "base": "0.5"
+  },
+  "Smartlink": {
+    "base": "1-2"
+  },
+  "Swordsman Lore": {
+    "base": "10-13"
+  },
+  "V101": {
+    "base": "19-20"
+  },
+  "V501": {
+    "base": "2-3"
+  },
+  "V502": {
+    "base": "28-30"
+  },
+  "V801": {
+    "base": "7-8"
+  },
+  "Yasakani Magatama": {
+    "base": "0.5"
+  }
 }
-
-
-
-
-
-
